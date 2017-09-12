@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Controller.js"></script> 
+	<script src="js/topicsController.js"></script> 
+	<script src="js/commentController.js"></script> 
+	
+<title>My Title</title>
+
+<style type="text/css">
+.disabled {
+   pointer-events: none;
+   cursor: default;
+}
+.navbar{
+	background-color: #d3d3d3;
+}
+
+ table {
+  width: auto;
+}
+table td{
+    max-width:100px;
+
+}
+</style>
+
+
+<script type="text/javascript">
+
+
+</script>
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">MyReddit</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav navbar-left input-group" >
+	     <li>
+		     <div class="input-group-btn">
+		     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >User ID <span class="caret"></span></button>
+		     	<ul class="dropdown-menu ">
+		       	<li><a href="" >SubForums</a>
+		       	<li><a href="" >Topics</a>
+		       	<li><a href="" >Users</a>
+		       </ul>
+			</div>
+		</li>
+		<li>
+	      <form >   
+	        <input type="text" class="form-control" placeholder="Search" style="width: 280px">
+	        <button type="submit" class="btn btn-default">Submit</button>
+	      </form>
+	    </li>
+	</ul>
+      <ul class="nav navbar-nav navbar-right" id="LogedIn" hidden>
+        <li><a href="" class="disabled" id="logedInAs">Loged in as: </a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="" id="logOut">LogOut</a></li>
+            <li><a href="">Create theme</a></li>
+            <li><a href="">bla bla</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Bla bla</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right" id="notLogedIn">
+        <li id="navbarLogin"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+		<li id="navbarRegister"><a href="register.html" >Register</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+<h3 id="role">Neemo Noone</h3>
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 lg-2">
+            <div class="panel-group" id="accordion">
+            <div class="panel panel-default" hidden id="adminOptions"> 
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>Admin options</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-primary"></span><a href="" id="userManagment">User managment</a>
+                                    </td>
+                                </tr>
+                                 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" hidden id="moderatorOptions">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
+                            </span>Moderator options</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne2" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-plus text-success"></span><a href="" id="addSubforum">Add subforum</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon  glyphicon-file  text-info"></span><a href="" id="subformManagment">Subforum managment</a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne1"><span class="glyphicon glyphicon-folder-close">
+                            </span>Subforums</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table" id="subformsTable">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">NoSubforums</a>
+                                    </td>
+                                </tr>
+                                
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default" hidden id="accountInfo">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                            </span>Account</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Saved Entities</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Likes/dislikes</a> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Messages</a>
+                                        <span class="badge">0</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                            </span>Reports</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9 lg-10" id="userManagmentWS" hidden>
+            <div class="well">
+                <h1> UserManagment</h1>
+                
+                <table id="usersTable">
+                <tr>
+                	<th>Username</th>
+                	<th>Role</th>
+                	<th></th>
+                	<th></th>
+                	<th></th>
+                </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9 lg-10" id="addSubforumWS" hidden>
+            <div class="well">
+                <h1>Add Subforum</h1>
+                <form id="addSubforumForm" class="form-horizontal" action="/MyReddit/rest/subforumService/createSubforum" method="POST" role="form">
+						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-10">
+								<input name="name" type="text" class="form-control" id="name" placeholder="Enter subforum name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="description" class="col-sm-2 control-label">Description</label>
+							<div class="col-sm-10">
+								<input name="description" type="text" id="description" class="form-control" name="description" placeholder="Enter subforum description">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="rules" class="col-sm-2 control-label">Rules</label>
+							<div class="col-sm-10">
+								<textarea name="rules" id="rules" class="form-control" name="rules" placeholder="Enter subforum rules" rows="5"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-primary text-right">Add subforum</button>
+							</div>
+						</div>
+					</form>
+            </div>
+        </div>
+        
+        <div class="col-sm-9 col-md-9 lg-10" id="SubforumManagmentWS" hidden>
+            <div class="well">
+                <h1>Subforum Managment</h1>
+                <table id="subforumMenageTable">
+                <tr>
+                	<th>Subforum name</th>
+                	<th>Moderator</th>
+                	<th></th>
+                	
+                </tr>
+                </table>
+            </div>
+        </div>
+        
+        
+        <div class="col-sm-9 col-md-9 lg-10" id="DispalySubforumWS" hidden>
+        
+        	<h1 id="subforumName">Subforum namet</h1>
+        	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+				  <div class="btn-group mr-2" role="group" aria-label="First group">
+				    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#topic-modal">Add Topic</button>
+				    <button type="button" class="btn btn-secondary">Folow</button>
+				    <button type="button" class="btn btn-secondary">3</button>
+				    <button type="button" class="btn btn-secondary">4</button>
+				  </div>
+			</div>
+            
+            <table   align="left" style="width: 60%" id="topicsTable">
+            <tr>
+            	<td ><a href="" ><h1>Name</h1></a></td>
+            </tr>
+            <tr>
+            	<td><button id="like2" class="glyphicon glyphicon-thumbs-up"></button>&nbsp<p style="display:inline-block">3</p>&nbsp&nbsp&nbsp<button id="dislike2" class="glyphicon glyphicon-thumbs-down"></button>
+            	 &nbsp <p style="display:inline-block">2</p><p style="display:inline-block"> &nbsp&nbsp&nbspComments:&nbsp</p><p style="display:inline-block">5</p></td>
+            </tr>
+            
+            
+            </table>
+    
+            
+        </div>
+
+
+
+        <div class="col-sm-9 col-md-9 lg-10" id="dispalyTopicWS">
+        
+            <h1 id="TopicName">Topic Name</h1>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary" id="commentTopic" data-toggle="modal" data-target="#comment-modal">Comment</button>
+                    <button type="button" class="btn btn-secondary" id="saveTopic">Save</button>
+                    <button type="button" class="btn btn-secondary" id="reportTopic">Report</button>
+                    
+                  </div>
+            </div>
+            <br><br>
+            <div id="textTypeMain" hidden>
+                    <p id="textTypeP"></p>
+            </div>
+             <div id="linkTypeMain" hidden>
+                    <a href="">Link</a>
+            </div>
+             <div id="imageTypeMain" hideen>
+                    <img src=""  id='imageTypeI' class="topicImage"/>
+            </div>
+            
+            <br>
+            <h1 >Comments:</h1>
+            
+            <div>
+                <div style="display:inline-block">
+                    
+                    
+                    <p>Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p><br>
+                    <div class="well" style="display:inline-block"><button id="like2" class="glyphicon glyphicon-thumbs-up"></button>&nbsp<p style="display:inline-block">3</p> &nbsp
+                    <button id="dislike2" class="glyphicon glyphicon-thumbs-down"></button> <p style="display:inline-block">2</p>
+                     <p style="display:inline-block"> &nbsp<a  href="" class="comentOnComment" >Comments</a>&nbsp</p>
+                     <p style="display:inline-block"> &nbsp<a  href="" class="reportComment" >Report</a>&nbsp</p>
+                     <p style="display:inline-block" >&nbsp<a  href="" class="edittComment" >Edit</a></p>
+                     <p style="display:inline-block" >&nbsp<a  href="" class="deleteComment" >Delete</a></p>
+                     <p style="display:inline-block" >&nbsp<a  href="" class="saveComment" >Delete</a></p>
+                     </div></td>
+                </div>
+                <div style="display:inline-block">
+                    
+                    <div  style="display:inline-block" >--------</div>
+                    
+                    <div style="display:inline-block">
+                        <p>Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p><br>
+                        <div class="well" style="display:inline-block"><button id="like2" class="glyphicon glyphicon-thumbs-up"></button>&nbsp<p style="display:inline-block">3</p> &nbsp
+                        <button id="dislike2" class="glyphicon glyphicon-thumbs-down"></button> <p style="display:inline-block">2</p>
+                         <p style="display:inline-block"> &nbsp<a  href="" class="comentOnComment" >Comments</a>&nbsp</p>
+                         <p style="display:inline-block"> &nbsp<a  href="" class="reportComment" >Report</a>&nbsp</p>
+                         <p style="display:inline-block" >&nbsp<a  href="" class="edittComment" >Edit</a></p>
+                         <p style="display:inline-block" >&nbsp<a  href="" class="deleteComment" >Delete</a></p>
+                         <p style="display:inline-block" >&nbsp<a  href="" class="saveComment" >Delete</a></p>
+                         </div>
+                    </div>
+                    
+                </div>
+            
+            
+            </div>
+    
+            
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ 	  <div class="modal-dialog">
+	<div class="loginmodal-container">
+		<h1>Login to Your Account</h1><br>
+	  <form id ="loginForm" name = "login" action="/MyReddit/rest/loginService/login" method="POST">
+		<input type="text" name="username" placeholder="username" id="username"><br>
+		<input type="password" name="password" placeholder="password" id=""><br>
+		<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+	  </form>
+		
+	  <div class="login-help">
+		<a href="register.html" style="color:black">Register</a>
+	  </div>
+	</div>
+</div>
+ </div>
+ 
+
+<div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+ 	  <div class="modal-dialog">
+	<div class="loginmodal-container">
+		<h1>Comments text:</h1><br>
+		<form id ="CommentForm" name = "login" action="/MyReddit/rest/loginService/login" method="POST">
+	  <textarea  cols="50" placeholder="Enter comment text" name="commentText" id="commentTextInput" rows="4"></textarea>
+		<input type="submit" id="addCommentButton" class="btn btn-primary text-right" data-toggle="modal" data-target="#comment-modal" >Add comment</button>
+		</form>
+	</div>
+</div>
+ </div>
+ 
+ <div id="topic-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add topic to Subforum</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addTopicForm" class="form-horizontal" action="" method="POST" role="form">
+						<div class="form-group">
+							<label for="nameT" class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-10">
+								<input name="topicId" type="text" class="form-control" id="topicNameInput" placeholder="Enter name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">Type</label>
+							<div class="col-sm-10">
+								<select name="inputType" id="topicInputType">
+									<option value="text">Text</option>
+									<option value="link">Link</option>
+									<option value="image">Image</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="content" class="col-sm-2 control-label">Content</label>
+							<div class="col-sm-10"  id="textContentDiv">
+								<input type="text" name="textContent" id="textContent" class="form-control" placeholder="Enter text" rows="6"></textarea>
+							</div>
+							
+							<div class="col-sm-10" id="linkContentDiv" hidden>
+								<input type="text" name="textContent" id="linkContent" class="form-control" placeholder="Enter link" ></textarea>
+							</div>
+							
+					</form>	
+					<from id="fileForm" name="fileForm" enctype="multipart/form-data" method="post" action="/MyReddit/rest/subforumService/addPicture">	
+							<div  hidden class="input-group col-sm-10" id="imageContentDiv" >
+							  <input  id = "imageContent" class="form-control btn" type="file" name="file" accept="image/*">
+							 
+							</div>
+						</div>
+					</form>	
+						<div class="form-group" >
+							<div class="col-sm-offset-2 col-sm-10">
+								<button id="addTopicSubmitButton" class="btn btn-primary text-right">Add topic</button>
+							</div>
+						</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+
+
+
+</body>
+</html>

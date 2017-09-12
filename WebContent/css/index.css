@@ -1,0 +1,30 @@
+
+
+.grow{
+	width: 100%
+} 
+
+table td {
+    width: auto !important;
+}
+
+.smallerTable{
+	widht: 60%;
+}
+.topicImage{
+	max-width: 500px;
+	max-height: 400px;
+	
+}
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+.btn-primary
+{
+	background-color: #d3d3d3;
+}
+.deleteSubf
+{
+	
+}
